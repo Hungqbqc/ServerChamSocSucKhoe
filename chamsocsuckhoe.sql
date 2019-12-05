@@ -2,10 +2,10 @@
 -- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 02, 2019 lúc 03:25 PM
--- Phiên bản máy phục vụ: 10.4.8-MariaDB
--- Phiên bản PHP: 7.1.33
+-- Host: 127.0.0.1
+-- Generation Time: Dec 05, 2019 at 12:15 PM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.1.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `chamsocsuckhoe`
+-- Database: `chamsocsuckhoe`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `danhmucmonan`
+-- Table structure for table `danhmucmonan`
 --
 
 CREATE TABLE `danhmucmonan` (
@@ -35,7 +35,7 @@ CREATE TABLE `danhmucmonan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `danhmucmonan`
+-- Dumping data for table `danhmucmonan`
 --
 
 INSERT INTO `danhmucmonan` (`Id`, `TenDanhMucMonAn`, `AnhDanhMuc`) VALUES
@@ -51,7 +51,7 @@ INSERT INTO `danhmucmonan` (`Id`, `TenDanhMucMonAn`, `AnhDanhMuc`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `monan`
+-- Table structure for table `monan`
 --
 
 CREATE TABLE `monan` (
@@ -63,14 +63,14 @@ CREATE TABLE `monan` (
   `Dam` decimal(10,0) NOT NULL,
   `Beo` decimal(10,0) NOT NULL,
   `Xo` decimal(10,0) NOT NULL,
-  `DanhMucMonAnId` int(11) NOT NULL
+  `IdDanhMucMonAn` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `monan`
+-- Dumping data for table `monan`
 --
 
-INSERT INTO `monan` (`Id`, `TenMonAn`, `AnhMonAn`, `DonViTinh`, `Calo`, `Dam`, `Beo`, `Xo`, `DanhMucMonAnId`) VALUES
+INSERT INTO `monan` (`Id`, `TenMonAn`, `AnhMonAn`, `DonViTinh`, `Calo`, `Dam`, `Beo`, `Xo`, `IdDanhMucMonAn`) VALUES
 (63, 'Cơm trắng', 'http://khoahocphattrien.vn/Images/Uploaded/Share/2017/02/10/44.jpg', '1 chén', 200, '5', '1', '44', 1),
 (64, 'Cơm trắng', 'http://khoahocphattrien.vn/Images/Uploaded/Share/2017/02/10/44.jpg', '1 đĩa', 406, '9', '1', '90', 1),
 (65, 'Bầu xào trứng', 'https://i.ytimg.com/vi/SZjyOx8HBvg/maxresdefault.jpg', '1 đĩa', 109, '4', '9', '4', 1),
@@ -130,7 +130,7 @@ INSERT INTO `monan` (`Id`, `TenMonAn`, `AnhMonAn`, `DonViTinh`, `Calo`, `Dam`, `
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `taikhoan`
+-- Table structure for table `taikhoan`
 --
 
 CREATE TABLE `taikhoan` (
@@ -140,10 +140,20 @@ CREATE TABLE `taikhoan` (
   `NgayTao` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `taikhoan`
+--
+
+INSERT INTO `taikhoan` (`Email`, `Password`, `HoTen`, `NgayTao`) VALUES
+('2', '2', '2', 20191206),
+('5', '5', '', 28112019),
+('hung', '1', '', 26112019),
+('nguyenngocanh6396@gmail.com ', '7278', 'Nguyễn Thị Ngọc Ánh', 28112019);
+
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `thongtinthanhvien`
+-- Table structure for table `thongtinthanhvien`
 --
 
 CREATE TABLE `thongtinthanhvien` (
@@ -158,10 +168,24 @@ CREATE TABLE `thongtinthanhvien` (
   `TongNangLuong` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `thongtinthanhvien`
+--
+
+INSERT INTO `thongtinthanhvien` (`Id`, `ChuTaiKhoan`, `ChucDanh`, `GioiTinh`, `NgaySinh`, `ChieuCao`, `CanNang`, `MucDoHoatDong`, `TongNangLuong`) VALUES
+(61, 'hung', 'Tôi', b'0', '23111996', 165, 47, 1, 1655),
+(62, '5', 'Tôi', b'0', '3111999', 145, 45, 2, 1752),
+(63, '5', '', b'0', '28112019', 0, 0, 1, 106),
+(64, 'nguyenngocanh6396@gmail.com', 'Tôi', b'1', '15041997', 162, 46, 2, 1760),
+(65, 'nguyenngocanh6396@gmail.com', '', b'0', '28112019', 0, 0, 1, 106),
+(66, 'nguyenngocanh6396@gmail.com', 'Mẹ', b'1', '9111978', 155, 55, 2, 1731),
+(67, '2', 'Tôi', b'0', '20191206', 0, 0, 1, 106),
+(68, '2', '', b'0', '20191206', 0, 0, 1, 106);
+
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `thucdon`
+-- Table structure for table `thucdon`
 --
 
 CREATE TABLE `thucdon` (
@@ -174,93 +198,74 @@ CREATE TABLE `thucdon` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Dumping data for table `thucdon`
+--
+
+INSERT INTO `thucdon` (`Id`, `ChuTaiKhoanId`, `BuaAnId`, `MonAnId`, `SoLuong`, `NgayAn`) VALUES
+(114, '2', 1, 64, 1, 20191206),
+(116, '2', 2, 93, 1, 20191206);
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `danhmucmonan`
+-- Indexes for table `danhmucmonan`
 --
 ALTER TABLE `danhmucmonan`
   ADD PRIMARY KEY (`Id`);
 
 --
--- Chỉ mục cho bảng `monan`
+-- Indexes for table `monan`
 --
 ALTER TABLE `monan`
-  ADD PRIMARY KEY (`Id`),
-  ADD KEY `FK_DMMonAn_MonAn` (`DanhMucMonAnId`);
+  ADD PRIMARY KEY (`Id`);
 
 --
--- Chỉ mục cho bảng `taikhoan`
+-- Indexes for table `taikhoan`
 --
 ALTER TABLE `taikhoan`
   ADD PRIMARY KEY (`Email`);
 
 --
--- Chỉ mục cho bảng `thongtinthanhvien`
+-- Indexes for table `thongtinthanhvien`
 --
 ALTER TABLE `thongtinthanhvien`
-  ADD PRIMARY KEY (`Id`),
-  ADD KEY `FK_TaiKhoan_ThanhVien` (`ChuTaiKhoan`);
+  ADD PRIMARY KEY (`Id`);
 
 --
--- Chỉ mục cho bảng `thucdon`
+-- Indexes for table `thucdon`
 --
 ALTER TABLE `thucdon`
-  ADD PRIMARY KEY (`Id`),
-  ADD KEY `FK_MonAn_ThucDon` (`MonAnId`),
-  ADD KEY `FK_TaiKhoan_ThucDon` (`ChuTaiKhoanId`);
+  ADD PRIMARY KEY (`Id`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `danhmucmonan`
+-- AUTO_INCREMENT for table `danhmucmonan`
 --
 ALTER TABLE `danhmucmonan`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT cho bảng `monan`
+-- AUTO_INCREMENT for table `monan`
 --
 ALTER TABLE `monan`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
--- AUTO_INCREMENT cho bảng `thongtinthanhvien`
+-- AUTO_INCREMENT for table `thongtinthanhvien`
 --
 ALTER TABLE `thongtinthanhvien`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
--- AUTO_INCREMENT cho bảng `thucdon`
+-- AUTO_INCREMENT for table `thucdon`
 --
 ALTER TABLE `thucdon`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
-
---
--- Các ràng buộc cho các bảng đã đổ
---
-
---
--- Các ràng buộc cho bảng `monan`
---
-ALTER TABLE `monan`
-  ADD CONSTRAINT `FK_DMMonAn_MonAn` FOREIGN KEY (`DanhMucMonAnId`) REFERENCES `danhmucmonan` (`Id`);
-
---
--- Các ràng buộc cho bảng `thongtinthanhvien`
---
-ALTER TABLE `thongtinthanhvien`
-  ADD CONSTRAINT `FK_TaiKhoan_ThanhVien` FOREIGN KEY (`ChuTaiKhoan`) REFERENCES `taikhoan` (`Email`);
-
---
--- Các ràng buộc cho bảng `thucdon`
---
-ALTER TABLE `thucdon`
-  ADD CONSTRAINT `FK_MonAn_ThucDon` FOREIGN KEY (`MonAnId`) REFERENCES `monan` (`Id`),
-  ADD CONSTRAINT `FK_TaiKhoan_ThucDon` FOREIGN KEY (`ChuTaiKhoanId`) REFERENCES `taikhoan` (`Email`);
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
