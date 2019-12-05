@@ -33,20 +33,20 @@ if (isset($obj["sql_Query"])) {
 switch ($loai) {
 
     // đếm số thành viên trong gia đình
-    case '1':
+    case 'DEM_SO_THANH_VIEN':
         LaySoThanhVien($con, $email);
         // echo json_encode($email) ;
         break;
     //  Lấy hết thông tin của các thành viên trong gia đình
-    case '2':
+    case 'LAY_THONG_TIN_CALO_THANH_VIEN':
         LayThongTinCacThanhVien($con, $email);
             break;
     // Thêm mới 1 thành viên
-    case '3':
+    case 'THEM_SO_THANH_VIEN':
         ThemThanhVien($con, $email, $soNguoi);
         break;
     // Cập nhật thông tin của thành viên
-    case '4':
+    case 'CAP_NHAT_THONG_TIN_CALO_THANH_VIEN':
         CapNhatThanhVien($con, $sql_Query);
         break;
     // Lấy chi tiết thông tin của 1 thành viên

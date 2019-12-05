@@ -38,7 +38,7 @@ class DanhMucMonAn
 
 class MonAn
 {
-    public function MonAn($Id, $TenMonAn, $AnhMonAn, $DonViTinh, $Calo, $Dam, $Beo, $Xo, $DanhMucMonAnId)
+    public function MonAn($Id, $TenMonAn, $AnhMonAn, $DonViTinh, $Calo, $Dam, $Beo, $Xo, $IdDanhMucMonAn)
     {
         $this->Id = $Id;
         $this->TenMonAn = $TenMonAn;
@@ -48,7 +48,7 @@ class MonAn
         $this->Dam = $Dam;
         $this->Beo = $Beo;
         $this->Xo = $Xo;
-        $this->DanhMucMonAnId = $DanhMucMonAnId;
+        $this->IdDanhMucMonAn = $IdDanhMucMonAn;
     }
 }
 

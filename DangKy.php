@@ -26,7 +26,6 @@ if (isset($obj['ngayTao']))
 
 // Creating SQL query and insert the record into MySQL database table.
 $Sql_Query = "INSERT INTO `taikhoan`(`Email`, `Password`, `HoTen`, `NgayTao`) VALUES  ('$email','$password','$name','$ngayTao')";
-
 if (mysqli_query($con, $Sql_Query))
 {
     echo 1;
@@ -35,5 +34,6 @@ else
 {
     echo 0;
 }
+// echo json_encode($Sql_Query.''.mysqli_query($con, $Sql_Query));
 mysqli_close($con);
 ?>

@@ -52,23 +52,14 @@ function LayDanhMucMonAn($con)
 
 function LayDanhSachMonAn($con, $idDanhMuc)
 {
-    $Sql_Query = "SELECT * FROM `monan` WHERE `DanhMucMonAnId` = '$idDanhMuc'";
+    $Sql_Query = "SELECT * FROM `monan` WHERE `idDanhMucMonAn` = '$idDanhMuc'";
     $result    = $con->query($Sql_Query);
     $mang      = array();
     
     if ($result->num_rows > 0) {
         // output dữ liệu trên trang
         while ($row = $result->fetch_assoc()) {
-            array_push($mang, new MonAn(
-                $row['Id'], $row['TenMonAn'],
-                $row['AnhMonAn'],
-                $row['DonViTinh'],
-                $row['Calo'],
-                $row['Dam'],
-                $row['Beo'],
-                $row['Xo'],
-                $row['DanhMucMonAnId']
-                    ));
+            array_push($mang, new MonAn($row['Id'], $row['TenMonAn'], $row['AnhMonAn'], $row['DonViTinh'], $row['Calo'], $row['Dam'], $row['Beo'], $row['Xo'], $row['IdDanhMucMonAn']));
         }
         echo json_encode($mang);
     } else {
@@ -86,7 +77,7 @@ function LayChiTietMonAn($con, $idMonAn)
     if ($result->num_rows > 0) {
         // output dữ liệu trên trang
         while ($row = $result->fetch_assoc()) {
-            array_push($mang, new MonAn($row['Id'], $row['TenMonAn'], $row['AnhMonAn'], $row['DonViTinh'], $row['Calo'], $row['Dam'], $row['Beo'], $row['Xo'], $row['DanhMucMonAnId']));
+            array_push($mang, new MonAn($row['Id'], $row['TenMonAn'], $row['AnhMonAn'], $row['DonViTinh'], $row['Calo'], $row['Dam'], $row['Beo'], $row['Xo'], $row['IdDanhMucMonAn']));
         }
         echo json_encode($mang);
     } else {
