@@ -12,7 +12,7 @@ class TaiKhoan
 
 class ThongTinThanhVien
 {
-    public function ThongTinThanhVien($id, $chuTaiKhoan, $chucDanh, $gioiTinh, $ngaySinh, $chieuCao, $canNang, $mucDoHoatDong)
+    public function ThongTinThanhVien($id, $chuTaiKhoan, $chucDanh, $gioiTinh, $ngaySinh, $chieuCao, $canNang, $mucDoHoatDong,$checked=false)
     {
         $this->id = $id;
         $this->chuTaiKhoan = $chuTaiKhoan;
@@ -22,6 +22,7 @@ class ThongTinThanhVien
         $this->chieuCao = $chieuCao;
         $this->canNang = $canNang;
         $this->mucDoHoatDong = $mucDoHoatDong;
+        $this->checked = $checked;
     }
 }
 

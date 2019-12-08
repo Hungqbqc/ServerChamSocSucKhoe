@@ -1,6 +1,6 @@
 <?php 
 // Importing DBConfig.php file.
-include 'DBConfig.php';
+// include 'DBConfig.php';
 
     // $Sql_Query = "CREATE TABLE `chamsocsuckhoe`.`xyz` ( `a` INT NOT NULL , `bv` INT NOT NULL , `fg` INT NOT NULL ) ENGINE = InnoDB;";
     // $Sql_Query = "delete  from taikhoan";
