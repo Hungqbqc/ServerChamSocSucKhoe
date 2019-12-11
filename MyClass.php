@@ -3,10 +3,11 @@ class TaiKhoan
 {
     private $email;
     private $password;
-    public function __construct($email, $password)
+    public function __construct($email, $password,$laQuanTri)
     {
         $this->email = $email;
         $this->password = $password;
+        $this->laQuanTri = $laQuanTri;
     }
 }
 

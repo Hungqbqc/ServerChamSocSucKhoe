@@ -36,6 +36,12 @@ switch ($loai)
             BaoCaoTuan($con,$email,$khoangThoiGian);
             break;
         }
+    case 'XOA_THUC_DON':
+        {
+            $thucDonId = $obj["thucDonId"];
+            XoaThucDon($con,$thucDonId);
+            break;
+        }
     }
 
     // ThemMonAn($con,$obj);
@@ -59,7 +65,7 @@ switch ($loai)
     function LayThongTinThucDon($con, $email, $ngayAn)
     {
         
-        $sql = "SELECT TK.Email,TK.NgayTao,TT.TongNangLuong,TD.BuaAnId,MA.*,TD.SoLuong FROM taikhoan TK
+        $sql = "SELECT TK.Email,TK.NgayTao,TT.TongNangLuong,TD.BuaAnId,MA.*,TD.SoLuong,TD.Id AS ThucDonId FROM taikhoan TK
                 LEFT JOIN thongtinthanhvien TT ON TK.Email = TT.ChuTaiKhoan AND TT.ChucDanh ='Tôi'
                 LEFT JOIN thucdon TD ON TK.Email = TD.ChuTaiKhoanId   AND TD.NgayAn='{$ngayAn}'
                 LEFT JOIN monan MA ON TD.MonAnId = MA.Id
@@ -149,6 +155,16 @@ switch ($loai)
             echo 0;
         }
         mysqli_close($con);
+    }
+
+    function XoaThucDon($con,$thucDonId ){
+        $sql = "DELETE FROM `thucdon` WHERE Id = {$thucDonId}";
+        $result = $con->query($sql);
+        if ($result) {
+            echo 1;
+        }else {
+            echo 0;
+        }
     }
 
 ?>

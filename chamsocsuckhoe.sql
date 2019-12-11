@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2019 at 12:15 PM
+-- Generation Time: Dec 11, 2019 at 11:21 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.1.33
 
@@ -137,6 +137,7 @@ CREATE TABLE `taikhoan` (
   `Email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `Password` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `HoTen` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `LaQuanTri` tinyint(1) NOT NULL DEFAULT 0,
   `NgayTao` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -144,11 +145,10 @@ CREATE TABLE `taikhoan` (
 -- Dumping data for table `taikhoan`
 --
 
-INSERT INTO `taikhoan` (`Email`, `Password`, `HoTen`, `NgayTao`) VALUES
-('2', '2', '2', 20191206),
-('5', '5', '', 28112019),
-('hung', '1', '', 26112019),
-('nguyenngocanh6396@gmail.com ', '7278', 'Nguyễn Thị Ngọc Ánh', 28112019);
+INSERT INTO `taikhoan` (`Email`, `Password`, `HoTen`, `LaQuanTri`, `NgayTao`) VALUES
+('2', '2', '2', 0, 20191206),
+('admin', 'admin', 'admin', 1, 20191201),
+('hungqb@gmail.com', '2', 'nguyen van hung', 0, 20191211);
 
 -- --------------------------------------------------------
 
@@ -173,14 +173,10 @@ CREATE TABLE `thongtinthanhvien` (
 --
 
 INSERT INTO `thongtinthanhvien` (`Id`, `ChuTaiKhoan`, `ChucDanh`, `GioiTinh`, `NgaySinh`, `ChieuCao`, `CanNang`, `MucDoHoatDong`, `TongNangLuong`) VALUES
-(61, 'hung', 'Tôi', b'0', '23111996', 165, 47, 1, 1655),
-(62, '5', 'Tôi', b'0', '3111999', 145, 45, 2, 1752),
-(63, '5', '', b'0', '28112019', 0, 0, 1, 106),
-(64, 'nguyenngocanh6396@gmail.com', 'Tôi', b'1', '15041997', 162, 46, 2, 1760),
-(65, 'nguyenngocanh6396@gmail.com', '', b'0', '28112019', 0, 0, 1, 106),
-(66, 'nguyenngocanh6396@gmail.com', 'Mẹ', b'1', '9111978', 155, 55, 2, 1731),
-(67, '2', 'Tôi', b'0', '20191206', 0, 0, 1, 106),
-(68, '2', '', b'0', '20191206', 0, 0, 1, 106);
+(69, '2', 'Tôi', b'0', '19961206', 165, 47, 2, 1896),
+(73, 'hungqb@gmail.com', 'Tôi', b'0', '20191211', 165, 47, 1, 1812),
+(74, 'hungqb@gmail.com', 'bo3', b'0', '20061211', 164, 65, 3, 2592),
+(76, 'hungqb@gmail.com', 'chi gai', b'0', '20191211', 0, 0, 1, 106);
 
 -- --------------------------------------------------------
 
@@ -202,8 +198,10 @@ CREATE TABLE `thucdon` (
 --
 
 INSERT INTO `thucdon` (`Id`, `ChuTaiKhoanId`, `BuaAnId`, `MonAnId`, `SoLuong`, `NgayAn`) VALUES
-(114, '2', 1, 64, 1, 20191206),
-(116, '2', 2, 93, 1, 20191206);
+(207, '2', 2, 93, 1, 20191211),
+(209, '2', 1, 98, 1, 20191211),
+(210, 'hungqb@gmail.com', 1, 65, 1, 20191211),
+(214, '2', 1, 64, 3, 20191210);
 
 --
 -- Indexes for dumped tables
@@ -259,13 +257,13 @@ ALTER TABLE `monan`
 -- AUTO_INCREMENT for table `thongtinthanhvien`
 --
 ALTER TABLE `thongtinthanhvien`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `thucdon`
 --
 ALTER TABLE `thucdon`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=215;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

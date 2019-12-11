@@ -21,7 +21,7 @@ $Sql_Query = "SELECT * FROM `taikhoan` WHERE Email = '$email' AND Password ='$pa
 $result = $con->query($Sql_Query);
 if ($result->num_rows > 0)
 {
-    echo json_encode($result->num_rows);
+    echo json_encode( $result->fetch_assoc());
 }
 else
 {
