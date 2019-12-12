@@ -27,14 +27,31 @@ $Sql_Query = '';
 if (isset($loai)) {
     # code...
     switch ($loai) {
+        // Danh mục món ăn
         case 'LAY_DANH_MUC_MON_AN':
             LayDanhMucMonAn($con);
             break;
-        case '2':
-            LayDanhSachMonAn($con, $idDanhMuc);
-            break;
         case 'THEM_DANH_MUC_MON_AN':
             ThemDanhMucMonAn($con, $tenDanhMucMonAn, $anhDanhMuc);
+            break;
+        case 'SUA_DANH_MUC_MON_AN':
+            SuaDanhMucMonAn($con,$idDanhMuc, $tenDanhMucMonAn, $anhDanhMuc);
+            break;
+        case 'XOA_DANH_MUC_MON_AN':
+            XoaDanhMucMonAn($con,$idDanhMuc);
+            break;
+        // Món ăn
+        case 'LAY_MON_AN':
+            LayDanhSachMonAn($con, $idDanhMuc);
+            break;
+        case 'THEM_MON_AN':
+            ThemMonAn($con, $tenMonAn, $anhMonAn);
+            break;
+        case 'SUA_MON_AN':
+            SuaMonAn($con,$idDanhMuc, $tenDanhMucMonAn, $anhDanhMuc);
+            break;
+        case 'XOA_MON_AN':
+            XoaMonAn($con,$idDanhMuc);
             break;
         default:
         break;
@@ -109,5 +126,37 @@ function ThemDanhMucMonAn($con, $tenDanhMucMonAn, $anhDanhMuc)
     mysqli_close($con);
 }
 
+// Thêm danh mục món ăn
+function SuaDanhMucMonAn($con, $id, $tenDanhMucMonAn, $anhDanhMuc)
+{
+    // Nếu không chọn ảnh thì k update ảnh
+    if ($anhDanhMuc === '') {
+        $Sql_Query = "UPDATE `danhmucmonan` SET `TenDanhMucMonAn`='$tenDanhMucMonAn' WHERE `Id`='$id'";
+    }
+    else {
+        $Sql_Query = "UPDATE `danhmucmonan` SET `TenDanhMucMonAn`='$tenDanhMucMonAn',`AnhDanhMuc`='$anhDanhMuc' WHERE `Id`='$id'";
+    }
+    $result    = $con->query($Sql_Query);
+    if ($result) {
+        echo 1;
+    }
+    else {
+        echo 0;
+    }
+    mysqli_close($con);
+}
 
+// Xóa danh mục món ăn
+function XoaDanhMucMonAn($con, $id)
+{
+    $Sql_Query = "DELETE FROM `danhmucmonan` WHERE `Id`='$id'";
+    $result    = $con->query($Sql_Query);
+    if ($result) {
+        echo 1;
+    }
+    else {
+        echo 0;
+    }
+    mysqli_close($con);
+}
 ?>
