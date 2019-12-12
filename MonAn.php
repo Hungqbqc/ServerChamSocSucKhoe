@@ -8,12 +8,18 @@ $json = file_get_contents('php://input');
 // decoding the received JSON and store into $obj variable.
 $obj = json_decode($json, true);
 
-// // Populate User email from JSON $obj array and store into $email.
-if (isset($_GET["loai"])) {
-    $loai = $_GET["loai"];
+// Populate User email from JSON $obj array and store into $email.
+if (isset($obj["loai"])) {
+    $loai = $obj["loai"];
 }
-if (isset($_GET["idDanhMuc"])) {
-    $idDanhMuc = $_GET["idDanhMuc"];
+if (isset($obj["idDanhMuc"])) {
+    $idDanhMuc = $obj["idDanhMuc"];
+}
+if (isset($obj["anhDanhMuc"])) {
+    $anhDanhMuc = $obj["anhDanhMuc"];
+}
+if (isset($obj["tenDanhMucMonAn"])) {
+    $tenDanhMucMonAn = $obj["tenDanhMucMonAn"];
 }
 
 $Sql_Query = '';
@@ -21,12 +27,15 @@ $Sql_Query = '';
 if (isset($loai)) {
     # code...
     switch ($loai) {
-        case '1':
-        LayDanhMucMonAn($con);
-        break;
+        case 'LAY_DANH_MUC_MON_AN':
+            LayDanhMucMonAn($con);
+            break;
         case '2':
-        LayDanhSachMonAn($con, $idDanhMuc);
-        break;
+            LayDanhSachMonAn($con, $idDanhMuc);
+            break;
+        case 'THEM_DANH_MUC_MON_AN':
+            ThemDanhMucMonAn($con, $tenDanhMucMonAn, $anhDanhMuc);
+            break;
         default:
         break;
     }
@@ -86,6 +95,19 @@ function LayChiTietMonAn($con, $idMonAn)
     mysqli_close($con);
 }
 
+// Thêm danh mục món ăn
+function ThemDanhMucMonAn($con, $tenDanhMucMonAn, $anhDanhMuc)
+{
+    $Sql_Query = "INSERT INTO `danhmucmonan`( `TenDanhMucMonAn`, `AnhDanhMuc`) VALUES ('$tenDanhMucMonAn','$anhDanhMuc')";
+    $result    = $con->query($Sql_Query);
+    if ($result) {
+        echo 1;
+    }
+    else {
+        echo 0;
+    }
+    mysqli_close($con);
+}
 
 
 ?>
