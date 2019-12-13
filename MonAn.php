@@ -42,8 +42,13 @@ if (isset($loai)) {
             break;
         // Món ăn
         case 'LAY_MON_AN':
-            LayDanhSachMonAn($con, $idDanhMuc);
+            {
+                if (isset($obj["idDanhMuc"])) {
+                    $idDanhMuc = $obj["idDanhMuc"];
+                }
+                LayDanhSachMonAn($con, $idDanhMuc);
             break;
+        }
         case 'THEM_MON_AN':
             ThemMonAn($con, $tenMonAn, $anhMonAn);
             break;
