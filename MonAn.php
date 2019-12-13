@@ -50,8 +50,20 @@ if (isset($loai)) {
             break;
         }
         case 'THEM_MON_AN':
-            ThemMonAn($con, $tenMonAn, $anhMonAn);
-            break;
+            {
+                // $monAn = new MonAn;
+                // $monAn->TenMonAn =  $obj["TenMonAn"];
+                // $monAn->AnhMonAn =  $obj["AnhMonAn"];
+                // $monAn->DonViTinh =  $obj["DonViTinh"];
+                // $monAn->Calo =  $obj["Calo"];
+                // $monAn->Dam =  $obj["Dam"];
+                // $monAn->Beo =  $obj["Beo"];
+                // $monAn->Xo =  $obj["Xo"];
+                // $monAn->IdDanhMucMonAn =  $obj["IdDanhMucMonAn"];
+                $monAn = new MonAn($obj['Id'], $obj['TenMonAn'], $obj['AnhMonAn'], $obj['DonViTinh'], $obj['Calo'], $obj['Dam'], $obj['Beo'], $obj['Xo'], $obj['IdDanhMucMonAn']);
+                ThemMonAn($con, $monAn);
+                break;
+            }
         case 'SUA_MON_AN':
             SuaMonAn($con,$idDanhMuc, $tenDanhMucMonAn, $anhDanhMuc);
             break;
@@ -156,6 +168,20 @@ function XoaDanhMucMonAn($con, $id)
 {
     $Sql_Query = "DELETE FROM `danhmucmonan` WHERE `Id`='$id'";
     $result    = $con->query($Sql_Query);
+    if ($result) {
+        echo 1;
+    }
+    else {
+        echo 0;
+    }
+    mysqli_close($con);
+}
+
+// Thêm danh mục món ăn
+function ThemMonAn($con, $monAn)
+{
+    $Sql_Query = "INSERT INTO `monan`( `TenMonAn`, `AnhMonAn`, `DonViTinh`, `Calo`, `Dam`, `Beo`, `Xo`, `IdDanhMucMonAn`) VALUES ('{$monAn->TenMonAn}','{$monAn->AnhMonAn}','{$monAn->DonViTinh}','{$monAn->Calo}','{$monAn->Dam}','{$monAn->Beo}','{$monAn->Xo}','{$monAn->IdDanhMucMonAn}')";
+    $result = $con->query($Sql_Query);
     if ($result) {
         echo 1;
     }
