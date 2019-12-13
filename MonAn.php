@@ -51,25 +51,26 @@ if (isset($loai)) {
         }
         case 'THEM_MON_AN':
             {
-                // $monAn = new MonAn;
-                // $monAn->TenMonAn =  $obj["TenMonAn"];
-                // $monAn->AnhMonAn =  $obj["AnhMonAn"];
-                // $monAn->DonViTinh =  $obj["DonViTinh"];
-                // $monAn->Calo =  $obj["Calo"];
-                // $monAn->Dam =  $obj["Dam"];
-                // $monAn->Beo =  $obj["Beo"];
-                // $monAn->Xo =  $obj["Xo"];
-                // $monAn->IdDanhMucMonAn =  $obj["IdDanhMucMonAn"];
                 $monAn = new MonAn($obj['Id'], $obj['TenMonAn'], $obj['AnhMonAn'], $obj['DonViTinh'], $obj['Calo'], $obj['Dam'], $obj['Beo'], $obj['Xo'], $obj['IdDanhMucMonAn']);
                 ThemMonAn($con, $monAn);
                 break;
             }
         case 'SUA_MON_AN':
-            SuaMonAn($con,$idDanhMuc, $tenDanhMucMonAn, $anhDanhMuc);
+            {
+                $monAn = new MonAn($obj['Id'], $obj['TenMonAn'], $obj['AnhMonAn'], $obj['DonViTinh'], $obj['Calo'], $obj['Dam'], $obj['Beo'], $obj['Xo'], $obj['IdDanhMucMonAn']);
+                SuaMonAn($con,$monAn);
+                // echo json_encode($obj);
+
             break;
+        }
         case 'XOA_MON_AN':
-            XoaMonAn($con,$idDanhMuc);
+        {
+            if (isset($obj["idMonAn"])) {
+                $idMonAn = $obj["idMonAn"];
+            }
+            XoaMonAn($con,$idMonAn);
             break;
+        }
         default:
         break;
     }
@@ -190,4 +191,34 @@ function ThemMonAn($con, $monAn)
     }
     mysqli_close($con);
 }
+
+// Sửa món ăn
+function SuaMonAn($con, $monAn)
+{
+    $Sql_Query = "UPDATE `monan` SET `TenMonAn`='{$monAn->TenMonAn}',`AnhMonAn`='{$monAn->AnhMonAn}',`DonViTinh`='{$monAn->DonViTinh}',
+    `Calo`='{$monAn->Calo}',`Dam`='{$monAn->Dam}',`Beo`='{$monAn->Beo}',`Xo`='{$monAn->Xo}'  WHERE `Id`='{$monAn->Id}'";
+    $result = $con->query($Sql_Query);
+    if ($result) {
+        echo 1;
+    }
+    else {
+        echo 0;
+    }
+    mysqli_close($con);
+}
+
+// Xóa món ăn
+function XoaMonAn($con, $id)
+{
+    $Sql_Query = "DELETE FROM `monan` WHERE `Id`='$id'";
+    $result    = $con->query($Sql_Query);
+    if ($result) {
+        echo 1;
+    }
+    else {
+        echo 0;
+    }
+    mysqli_close($con);
+}
+
 ?>
