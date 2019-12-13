@@ -11,7 +11,7 @@ $loai = $obj['loai'];
 
 switch ($loai)
 {
-    case 1:
+    case 'THEM_MON_AN':
         {
                 $item = new ThucDon;
                 $item->ChuTaiKhoanId = $obj['ChuTaiKhoanId'];
