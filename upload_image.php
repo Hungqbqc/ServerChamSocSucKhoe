@@ -1,7 +1,7 @@
 <?php
 	// Type your website name or domain name here.
 	// $domain_name = "http://192.168.64.2/ServerChamSocSucKhoe/" ;
-	$domain_name = "http://192.168.0.161/ServerChamSocSucKhoe/" ;
+	$domain_name = "http://192.168.0.129/ServerChamSocSucKhoe/" ;
 	
 	// Image uploading folder.
 	$target_dir = "uploads";
