@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2019 at 11:21 AM
+-- Generation Time: Dec 27, 2019 at 11:07 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.1.33
 
@@ -46,7 +46,8 @@ INSERT INTO `danhmucmonan` (`Id`, `TenDanhMucMonAn`, `AnhDanhMuc`) VALUES
 (5, 'Xôi – chè', 'http://www.aeoncitimart.vn/uploads/articles/249/xoi_che_ngon_het_y_cho_ngay_tet.jpg\r\n'),
 (6, 'Trứng', 'https://znews-photo.zadn.vn/w1024/Uploaded/tmuitg/2019_05_26/1tl.jpg\r\n'),
 (7, 'Sữa – nước giải khát', 'https://medonthan.com/wp-content/uploads/2017/02/chuan-bi-mang-thai-nen-uong-sua-gi.jpg\r\n'),
-(8, 'Trái cây', 'https://sohanews.sohacdn.com/thumb_w/660/2019/1/11/cac-loai-trai-cay-1547174171357506224603-crop-1547174182816570687384.jpg\r\n');
+(8, 'Trái cây', 'https://sohanews.sohacdn.com/thumb_w/660/2019/1/11/cac-loai-trai-cay-1547174171357506224603-crop-1547174182816570687384.jpg\r\n'),
+(64, 'mons de mo', 'http://192.168.0.166/ServerChamSocSucKhoe/uploads/454034904_1577434967.jpeg');
 
 -- --------------------------------------------------------
 
@@ -63,7 +64,7 @@ CREATE TABLE `monan` (
   `Dam` decimal(10,0) NOT NULL,
   `Beo` decimal(10,0) NOT NULL,
   `Xo` decimal(10,0) NOT NULL,
-  `IdDanhMucMonAn` int(11) NOT NULL
+  `IdDanhMucMonAn` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -125,7 +126,20 @@ INSERT INTO `monan` (`Id`, `TenMonAn`, `AnhMonAn`, `DonViTinh`, `Calo`, `Dam`, `
 (114, 'Bún mắm', 'https://cdn.tgdd.vn/Files/2018/06/21/1096777/cach-nau-bun-mam-thom-ngon-khong-khac-gi-ngoai-hang.jpg', '1 tô', 480, '28', '16', '57', 3),
 (115, 'Bún măng', 'https://tourane.vn/wp-content/uploads/2018/02/cach-nau-bun-mang-vit.jpg', '1 tô', 485, '21', '20', '56', 3),
 (116, 'Bún mộc', 'https://www.cet.edu.vn/wp-content/uploads/2018/05/bun-moc.jpg', '1 tô', 514, '28', '19', '57', 3),
-(117, 'Bún riêu cua', 'https://thucthan.com/media/2019/07/bun-rieu-cua/bun-rieu-cua.png', '1 tô', 414, '18', '12', '58', 3);
+(117, 'Bún riêu cua', 'https://thucthan.com/media/2019/07/bun-rieu-cua/bun-rieu-cua.png', '1 tô', 414, '18', '12', '58', 3),
+(127, 'trung chien', 'http://192.168.0.161/ServerChamSocSucKhoe/uploads/1525953985_1576219537.jpeg', 'quar', 56, '28', '33', '44', 6),
+(128, 'tr', 'http://192.168.0.161/ServerChamSocSucKhoe/uploads/620626252_1576208650.jpeg', 'donViTinh', 1, '2', '3', '4', 3),
+(129, '434', 'http://192.168.0.161/ServerChamSocSucKhoe/uploads/257712264_1576208718.jpeg', 'donViTinh', 1, '2', '3', '4', 3),
+(130, 'fg', 'http://192.168.0.161/ServerChamSocSucKhoe/uploads/1148984132_1576208764.jpeg', 'donViTinh', 1, '2', '3', '4', 5),
+(132, 'fd', 'http://192.168.0.161/ServerChamSocSucKhoe/uploads/1917993633_1576208835.jpeg', 'donViTinh', 1, '2', '3', '4', 5),
+(133, 're', 'http://192.168.0.161/ServerChamSocSucKhoe/uploads/1679482449_1576208896.jpeg', 'donViTinh', 1, '2', '3', '4', 5),
+(134, 'fgf', 'http://192.168.0.161/ServerChamSocSucKhoe/uploads/43453939_1576208948.jpeg', 'donViTinh', 1, '2', '3', '4', 5),
+(139, 'cam de mo', 'http://192.168.0.161/ServerChamSocSucKhoe/uploads/464928338_1576218388.jpeg', 'qua', 555, '234', '345', '567', 0),
+(141, 'fds', 'dfdf', 'fdf', 0, '0', '0', '0', 4),
+(142, 'fds', 'dfdf', 'fdf', 0, '0', '0', '0', 4),
+(143, 'cá chim', 'http://192.168.0.166/ServerChamSocSucKhoe/uploads/1810291507_1577418163.jpeg', 'lát', 150, '23', '42', '11', NULL),
+(144, 'cá nga', 'http://192.168.0.166/ServerChamSocSucKhoe/uploads/490391654_1577418367.jpeg', 'ed', 4, '4', '4', '4', NULL),
+(147, '1', 'http://192.168.0.166/ServerChamSocSucKhoe/uploads/1405461106_1577420899.jpeg', '1', 1, '1', '1', '1', NULL);
 
 -- --------------------------------------------------------
 
@@ -138,17 +152,17 @@ CREATE TABLE `taikhoan` (
   `Password` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `HoTen` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
   `LaQuanTri` tinyint(1) NOT NULL DEFAULT 0,
-  `NgayTao` int(11) NOT NULL
+  `NgayTao` int(11) NOT NULL,
+  `Avatar` text COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `taikhoan`
 --
 
-INSERT INTO `taikhoan` (`Email`, `Password`, `HoTen`, `LaQuanTri`, `NgayTao`) VALUES
-('2', '2', '2', 0, 20191206),
-('admin', 'admin', 'admin', 1, 20191201),
-('hungqb@gmail.com', '2', 'nguyen van hung', 0, 20191211);
+INSERT INTO `taikhoan` (`Email`, `Password`, `HoTen`, `LaQuanTri`, `NgayTao`, `Avatar`) VALUES
+('2', '2', 'ho ten', 0, 20191227, 'http://192.168.0.166/ServerChamSocSucKhoe/uploads/1272285697_1577434784.jpeg'),
+('admin', 'admin', '', 1, 0, '');
 
 -- --------------------------------------------------------
 
@@ -173,10 +187,9 @@ CREATE TABLE `thongtinthanhvien` (
 --
 
 INSERT INTO `thongtinthanhvien` (`Id`, `ChuTaiKhoan`, `ChucDanh`, `GioiTinh`, `NgaySinh`, `ChieuCao`, `CanNang`, `MucDoHoatDong`, `TongNangLuong`) VALUES
-(69, '2', 'Tôi', b'0', '19961206', 165, 47, 2, 1896),
-(73, 'hungqb@gmail.com', 'Tôi', b'0', '20191211', 165, 47, 1, 1812),
-(74, 'hungqb@gmail.com', 'bo3', b'0', '20061211', 164, 65, 3, 2592),
-(76, 'hungqb@gmail.com', 'chi gai', b'0', '20191211', 0, 0, 1, 106);
+(88, '2', 'Tôi', b'0', '19960929', 165, 47, 1, 1655),
+(89, '2', 'me', b'0', '19661206', 156, 48, 2, 1621),
+(90, '2', '', b'0', '20191227', 0, 0, 1, 106);
 
 -- --------------------------------------------------------
 
@@ -198,10 +211,31 @@ CREATE TABLE `thucdon` (
 --
 
 INSERT INTO `thucdon` (`Id`, `ChuTaiKhoanId`, `BuaAnId`, `MonAnId`, `SoLuong`, `NgayAn`) VALUES
-(207, '2', 2, 93, 1, 20191211),
 (209, '2', 1, 98, 1, 20191211),
 (210, 'hungqb@gmail.com', 1, 65, 1, 20191211),
-(214, '2', 1, 64, 3, 20191210);
+(214, '2', 1, 64, 3, 20191210),
+(217, '2', 2, 110, 2, 20191213),
+(219, '2', 4, 108, 1, 20191213),
+(220, '2', 1, 95, 3, 20191213),
+(221, '2', 2, 94, 3, 20191213),
+(223, '2', 3, 96, 1, 20191213),
+(224, '2', 3, 109, 2, 20191213),
+(229, '2', 1, 110, 1, 20191212),
+(230, '2', 1, 95, 1, 20191212),
+(231, '2', 2, 110, 1, 20191212),
+(232, '2', 2, 111, 2, 20191210),
+(233, '2', 2, 67, 1, 20191211),
+(236, '2', 1, 66, 2, 20191211),
+(237, '2', 1, 111, 1, 20191211),
+(247, '2', 1, 95, 1, 20191217),
+(248, '2', 1, 63, 1, 20191217),
+(249, '2', 2, 95, 1, 20191217),
+(250, '2', 1, 109, 1, 20191216),
+(251, '2', 2, 94, 2, 20191216),
+(252, '2', 1, 96, 1, 20191216),
+(253, '2', 1, 73, 1, 20191227),
+(254, '2', 2, 109, 2, 20191227),
+(255, '2', 1, 95, 3, 20191226);
 
 --
 -- Indexes for dumped tables
@@ -217,7 +251,8 @@ ALTER TABLE `danhmucmonan`
 -- Indexes for table `monan`
 --
 ALTER TABLE `monan`
-  ADD PRIMARY KEY (`Id`);
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `DanhMucMonAn_MonAn` (`IdDanhMucMonAn`);
 
 --
 -- Indexes for table `taikhoan`
@@ -229,13 +264,16 @@ ALTER TABLE `taikhoan`
 -- Indexes for table `thongtinthanhvien`
 --
 ALTER TABLE `thongtinthanhvien`
-  ADD PRIMARY KEY (`Id`);
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `TaiKhoan_ThonTinThanhVien` (`ChuTaiKhoan`);
 
 --
 -- Indexes for table `thucdon`
 --
 ALTER TABLE `thucdon`
-  ADD PRIMARY KEY (`Id`);
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `MonAn_ThucDon` (`MonAnId`),
+  ADD KEY `TaiKhoan_ThucDon` (`ChuTaiKhoanId`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -245,25 +283,48 @@ ALTER TABLE `thucdon`
 -- AUTO_INCREMENT for table `danhmucmonan`
 --
 ALTER TABLE `danhmucmonan`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT for table `monan`
 --
 ALTER TABLE `monan`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
 
 --
 -- AUTO_INCREMENT for table `thongtinthanhvien`
 --
 ALTER TABLE `thongtinthanhvien`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT for table `thucdon`
 --
 ALTER TABLE `thucdon`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=215;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=256;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `monan`
+--
+ALTER TABLE `monan`
+  ADD CONSTRAINT `DanhMucMonAn_MonAn` FOREIGN KEY (`IdDanhMucMonAn`) REFERENCES `danhmucmonan` (`Id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `thongtinthanhvien`
+--
+ALTER TABLE `thongtinthanhvien`
+  ADD CONSTRAINT `TaiKhoan_ThonTinThanhVien` FOREIGN KEY (`ChuTaiKhoan`) REFERENCES `taikhoan` (`Email`);
+
+--
+-- Constraints for table `thucdon`
+--
+ALTER TABLE `thucdon`
+  ADD CONSTRAINT `MonAn_ThucDon` FOREIGN KEY (`MonAnId`) REFERENCES `monan` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `TaiKhoan_ThucDon` FOREIGN KEY (`ChuTaiKhoanId`) REFERENCES `taikhoan` (`Email`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -38,6 +38,14 @@ if (isset($obj["chucDanh"]))
 {
     $chucDanh = $obj["chucDanh"];
 }
+
+
+if (isset($obj["uri"]))
+{
+    $uri = $obj["uri"];
+}
+
+
 switch ($loai)
 {
 
@@ -73,6 +81,10 @@ switch ($loai)
     break;
     case 'THEM_THANH_VIEN':
         ThemThanhVien($con, $chucDanh, $email);
+    break;
+
+    case 'CAP_NHAT_AVATAR':
+        CapNhatAvatar($con, $email,$uri);
     break;
 
 }
@@ -196,4 +208,18 @@ function ThemThanhVien($con, $chucDanh, $email)
     mysqli_close($con);
 }
 
+function  CapNhatAvatar($con, $email,$uri)
+{
+    $Sql_Query = "UPDATE `taikhoan` SET `Avatar`= '$uri'  WHERE  `Email`='$email'";
+    $result = $con->query($Sql_Query);
+    if ($result)
+    {
+        echo 1;
+    }
+    else
+    {
+        echo 0;
+    }
+    mysqli_close($con);
+}
 ?>

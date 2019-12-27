@@ -2,9 +2,8 @@
 // Importing DBConfig.php file.
 include 'DBConfig.php';
 
-    $Sql_Query = "select  from taikhoan";
-    $Sql_Query = "drop table  xyz";
-    // $result    = $con->query($Sql_Query);
+    $Sql_Query = "select * from taikhoan";
+    $result    = $con->query($Sql_Query);
         $mangThongTin = array();
         if ($result->num_rows > 0) {
         while ( $row = $result->fetch_assoc()) {
