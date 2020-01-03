@@ -21,12 +21,12 @@ $Sql_Query = "SELECT * FROM `taikhoan` WHERE Email = '$email' AND Password ='$pa
 $result = $con->query($Sql_Query);
 if ($result->num_rows > 0)
 {
-    echo json_encode( $result->fetch_assoc());
+    echo json_encode($result->fetch_assoc());
 }
 else
 {
     echo json_encode(0);
 }
-
+// echo json_encode($Sql_Query);
 mysqli_close($con);
 ?>

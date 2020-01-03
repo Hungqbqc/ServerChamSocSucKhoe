@@ -161,6 +161,7 @@ function ThemSoThanhVien($con, $email, $soNguoi)
         echo 0;
     }
     mysqli_close($con);
+    // echo json_encode($Sql_Query);
 
 }
 
@@ -189,7 +190,6 @@ function XoaThanhVien($con, $listThanhVienId)
     {
         echo 0;
     }
-    // echo json_encode($Sql_Query);
     mysqli_close($con);
 }
 

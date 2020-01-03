@@ -27,7 +27,8 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `danhmucmonan`
 --
-
+DROP DATABASE IF EXISTS chamsocsuckhoe;
+CREATE DATABASE chamsocsuckhoe;
 CREATE TABLE `danhmucmonan` (
   `Id` int(11) NOT NULL,
   `TenDanhMucMonAn` varchar(100) COLLATE utf8_unicode_ci NOT NULL,

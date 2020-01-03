@@ -34,6 +34,6 @@ else
 {
     echo 0;
 }
-// echo json_encode($Sql_Query.''.mysqli_query($con, $Sql_Query));
+// echo json_encode($Sql_Query);
 mysqli_close($con);
 ?>
