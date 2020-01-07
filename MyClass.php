@@ -83,6 +83,10 @@ class DanhSachMonAn{
 class BaoCaoThucDonTuan{
     public $Email ;
     public $Calo ;
+    public $TongNangLuong ;
+    public $Dam ;
+    public $Xo ;
+    public $Beo ;
     public $NgayAn ;
 }
 

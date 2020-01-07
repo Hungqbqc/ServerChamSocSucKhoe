@@ -111,7 +111,10 @@ switch ($loai)
     }
 
     function    BaoCaoTuan($con,$email, $khoangThoiGian){
-        $sql = "SELECT TK.Email,SUM(TD.SoLuong* MA.Calo) Calo,TD.NgayAn FROM taikhoan TK
+
+       
+
+        $sql = "SELECT TK.Email,SUM(TD.SoLuong* MA.Calo) Calo,SUM(TD.SoLuong* MA.Dam) Dam,SUM(TD.SoLuong* MA.Xo) Xo,SUM(TD.SoLuong* MA.Beo) Beo,TD.NgayAn,TT.TongNangLuong FROM taikhoan TK
                 LEFT JOIN thongtinthanhvien TT ON TK.Email = TT.ChuTaiKhoan AND TT.ChucDanh ='Tôi'
                 LEFT JOIN thucdon TD ON TK.Email = TD.ChuTaiKhoanId   AND TD.NgayAn >='{$khoangThoiGian[0]}' and TD.NgayAn <='{$khoangThoiGian[count($khoangThoiGian)-1]}'
                 LEFT JOIN monan MA ON TD.MonAnId = MA.Id
@@ -120,6 +123,12 @@ switch ($loai)
                 ORDER BY TD.NgayAn";
 
         $result = $con->query($sql);
+
+        $sql1 = "SELECT TongNangLuong FROM thongtinthanhvien WHERE chucdanh='Tôi' AND 	ChuTaiKhoan = '{$email}'";
+        $result1= $con->query($sql1);
+        $row = $result1->fetch_assoc();
+        $TongNangLuong = $row['TongNangLuong'];
+
         if ($result->num_rows > 0)
         {
             $arr = array();
@@ -133,6 +142,10 @@ switch ($loai)
                         $item = new BaoCaoThucDonTuan;
                         $item->NgayAn = $value1['NgayAn'];
                         $item->Calo = $value1['Calo'];
+                        $item->TongNangLuong = $TongNangLuong;
+                        $item->Dam = $value1['Dam'];
+                        $item->Beo = $value1['Beo'];
+                        $item->Xo = $value1['Xo'];
                         $item->Email = $value1['Email'];
                         array_push($arr, $item);
                         $daThem=true;
@@ -143,7 +156,11 @@ switch ($loai)
                     $daThem=false;
                     $item = new BaoCaoThucDonTuan;
                     $item->NgayAn = $value;
+                    $item->TongNangLuong = $TongNangLuong;
                     $item->Calo = 0;
+                    $item->Dam = 0;
+                    $item->Beo = 0;
+                    $item->Xo = 0;
                     $item->Email = 0;
                     array_push($arr, $item);
                 }
